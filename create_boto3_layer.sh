@@ -29,9 +29,9 @@ do
        ;;
     -p=*|--python=*)
        pythonversion="${i#*=}"
-       if [ $pythonversion != '2.7' ] && [ $pythonversion != '3.6' ] && [ $pythonversion != '3.7' ] 
+       if [ $pythonversion != '2.7' ] && [ $pythonversion != '3.6' ] && [ $pythonversion != '3.7' ] && [ $pythonversion != '3.8' ] && [ $pythonversion != '3.9' ]
        then
-         echo "Possible values for python version: 2.7 | 3.6 | 3.7"
+         echo "Possible values for python version: 2.7 | 3.6 | 3.7 | 3.8 | 3.9"
          exit 1
        fi
        ;;
@@ -54,7 +54,7 @@ OPTIONS\n
 \n
 \t -p | --python : (Optional) Specify the version of python for which you want to create the layer.\n
 \t\t\t If not specified, will create for all versions of python.\n
-\t\t\t Possible values: 2.7 | 3.6 | 3.7\n
+\t\t\t Possible values: 2.7 | 3.6 | 3.7 | 3.8 | 3.9 n
 \n
 \t  -r | --region : (Optional) Specify the region in which you want to create the layer.\n
 \t\t\t If not specified, use the region configured with AWS cli.\n
@@ -113,6 +113,12 @@ if [ -z "${pythonversion}" ]; then
 
   # Python 3.7
   buildpython "3.7"
+
+  # Python 3.8
+  buildpython "3.8"  
+
+  # Python 3.9
+  buildpython "3.9"  
   
   cd /tmp
   zip -r boto3-$boto3version.zip python > /dev/null
